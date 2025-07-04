@@ -13,6 +13,7 @@ app.use(cors({
 app.use(bodyParser.json());
 
 app.post("/track", async (req, res) => {
+  
   try {
     const userAgent = req.headers['user-agent'] || "Unknown";
     const ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
@@ -25,7 +26,7 @@ app.post("/track", async (req, res) => {
 
     console.log(`Received event: ${enriched.event} on ${enriched.url}`);
     await produceEvent("web-activity", enriched);
-    res.status(200).send({ status: "OK" });
+    res.status(200).send({ status: "OK", message: "Tracker backend is alive!" });
   } catch (err) {
     console.error("Error producing to Kafka", err);
     res.status(500).send({ status: "error" });
