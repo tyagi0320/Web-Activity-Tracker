@@ -18,6 +18,7 @@ Thumbs.db
 # Docker
 docker-compose.override.yml
 docker-compose.debug.yml
+*.pem
 
 # Build artifacts
 dist/
